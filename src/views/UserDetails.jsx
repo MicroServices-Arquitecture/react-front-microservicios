@@ -7,7 +7,7 @@ function UserDetails() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8090/user/api/taskuser/id/${id}`)
+    fetch(`http://localhost:8090/task/api/taskuser/id/${id}`)
       .then((res) => res.json())
       .then((data) => setUser(data))
       .catch((error) => console.error("Error loading user:", error));

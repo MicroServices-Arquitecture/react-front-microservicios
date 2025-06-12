@@ -19,7 +19,7 @@ function UserForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:8090/user/api/taskuser", {
+      const res = await fetch("http://localhost:8090/task/api/taskuser", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
