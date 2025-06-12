@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { FaUsers, FaUserPlus, FaInfoCircle } from "react-icons/fa";
 
 function Users() {
   const [usuarios, setUsuarios] = useState([]);
@@ -14,8 +15,12 @@ function Users() {
   return (
     <div className="container py-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h1 className="h3">Lista de Usuarios</h1>
+        <h1 className="h3">
+          <FaUsers className="me-2 text-primary" />
+          Lista de Usuarios
+        </h1>
         <Link to="/users/new" className="btn btn-primary">
+          <FaUserPlus className="me-2" />
           Crear Usuario
         </Link>
       </div>
@@ -40,6 +45,7 @@ function Users() {
                 <td>{usuario.mobile}</td>
                 <td>
                   <Link to={`/users/${usuario.id}`} className="btn btn-sm btn-outline-info">
+                    <FaInfoCircle className="me-1" />
                     Ver Detalles
                   </Link>
                 </td>

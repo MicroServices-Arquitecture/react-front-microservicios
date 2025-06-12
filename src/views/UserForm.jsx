@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaUser, FaEnvelope, FaMobileAlt, FaUserPlus } from "react-icons/fa";
+import { toast } from "react-toastify";
 
-function CrearUsuario() {
+function UserForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,9 +24,16 @@ function CrearUsuario() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      if (res.ok) navigate("/users");
+
+      if (res.ok) {
+        toast.success("Usuario creado correctamente");
+        setTimeout(() => navigate("/users"), 2000); // Espera 2s antes de redirigir
+      } else {
+        toast.error("No se pudo crear el usuario");
+      }
     } catch (err) {
       console.error("Error creando usuario:", err);
+      toast.error("Error de red al crear el usuario");
     }
   };
 
@@ -32,10 +41,16 @@ function CrearUsuario() {
     <div className="container py-5">
       <div className="card mx-auto" style={{ maxWidth: "500px" }}>
         <div className="card-body">
-          <h4 className="card-title mb-4 text-center">Crear Usuario</h4>
+          <h4 className="card-title mb-4 text-center">
+            <FaUserPlus className="me-2" />
+            Crear Usuario
+          </h4>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label className="form-label">Nombre</label>
+              <label className="form-label">
+                <FaUser className="me-2 text-secondary" />
+                Nombre
+              </label>
               <input
                 type="text"
                 name="name"
@@ -47,7 +62,10 @@ function CrearUsuario() {
               />
             </div>
             <div className="mb-3">
-              <label className="form-label">Correo Electrónico</label>
+              <label className="form-label">
+                <FaEnvelope className="me-2 text-secondary" />
+                Correo Electrónico
+              </label>
               <input
                 type="email"
                 name="email"
@@ -59,7 +77,10 @@ function CrearUsuario() {
               />
             </div>
             <div className="mb-3">
-              <label className="form-label">Teléfono</label>
+              <label className="form-label">
+                <FaMobileAlt className="me-2 text-secondary" />
+                Teléfono
+              </label>
               <input
                 type="tel"
                 name="mobile"
@@ -71,6 +92,7 @@ function CrearUsuario() {
               />
             </div>
             <button type="submit" className="btn btn-primary w-100">
+              <FaUserPlus className="me-2" />
               Crear Usuario
             </button>
           </form>
@@ -80,4 +102,4 @@ function CrearUsuario() {
   );
 }
 
-export default CrearUsuario;
+export default UserForm;

@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { FaIdBadge, FaClipboardList, FaAlignLeft, FaInfoCircle } from "react-icons/fa";
 
 function TaskDetails() {
   const { id } = useParams();
@@ -27,16 +28,18 @@ function TaskDetails() {
     <div className="container py-5">
       <div className="card mx-auto" style={{ maxWidth: "600px" }}>
         <div className="card-body">
-          <h4 className="card-title mb-4">Detalles de la Tarea</h4>
+          <h4 className="card-title mb-4 d-flex align-items-center gap-2">
+            <FaInfoCircle /> Detalles de la Tarea
+          </h4>
           <ul className="list-group list-group-flush">
-            <li className="list-group-item">
-              <strong>ID:</strong> {tarea.id}
+            <li className="list-group-item d-flex align-items-center gap-2">
+              <FaIdBadge /> <strong>ID:</strong> {tarea.id}
             </li>
-            <li className="list-group-item">
-              <strong>Nombre:</strong> {tarea.name}
+            <li className="list-group-item d-flex align-items-center gap-2">
+              <FaClipboardList /> <strong>Nombre:</strong> {tarea.name}
             </li>
-            <li className="list-group-item">
-              <strong>Descripción:</strong> {tarea.description}
+            <li className="list-group-item d-flex align-items-start gap-2">
+              <FaAlignLeft className="mt-1" /> <strong>Descripción:</strong> {tarea.description}
             </li>
           </ul>
         </div>

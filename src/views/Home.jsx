@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FaUsers, FaTasks } from "react-icons/fa";
 
 function Home() {
   return (
@@ -10,10 +11,12 @@ function Home() {
 
       <div className="d-flex flex-column align-items-center gap-3">
         <Link to="/users" className="btn btn-primary btn-lg w-50">
+          <FaUsers className="me-2" />
           Gestionar Usuarios
         </Link>
 
         <Link to="/tasks" className="btn btn-success btn-lg w-50">
+          <FaTasks className="me-2" />
           Gestionar Tareas
         </Link>
       </div>

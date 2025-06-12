@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaPlusCircle, FaRegFileAlt, FaAlignLeft } from "react-icons/fa";
+import { toast } from "react-toastify";
 
-function CrearTarea() {
+function TaskForm() {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -21,9 +23,16 @@ function CrearTarea() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      if (res.ok) navigate("/tasks");
+
+      if (res.ok) {
+        toast.success("Tarea creada exitosamente");
+        setTimeout(() => navigate("/tasks"), 2000); // redirige después de 2s
+      } else {
+        toast.error("Error al crear la tarea");
+      }
     } catch (err) {
       console.error("Error creando tarea:", err);
+      toast.error("Error de conexión con el servidor");
     }
   };
 
@@ -31,10 +40,16 @@ function CrearTarea() {
     <div className="container py-5">
       <div className="card mx-auto" style={{ maxWidth: "500px" }}>
         <div className="card-body">
-          <h4 className="card-title mb-4 text-center">Crear Nueva Tarea</h4>
+          <h4 className="card-title mb-4 text-center">
+            <FaPlusCircle className="me-2" />
+            Crear Nueva Tarea
+          </h4>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label className="form-label">Nombre</label>
+              <label className="form-label">
+                <FaRegFileAlt className="me-2" />
+                Nombre
+              </label>
               <input
                 type="text"
                 name="name"
@@ -46,7 +61,10 @@ function CrearTarea() {
               />
             </div>
             <div className="mb-3">
-              <label className="form-label">Descripción</label>
+              <label className="form-label">
+                <FaAlignLeft className="me-2" />
+                Descripción
+              </label>
               <input
                 type="text"
                 name="description"
@@ -58,6 +76,7 @@ function CrearTarea() {
               />
             </div>
             <button type="submit" className="btn btn-success w-100">
+              <FaPlusCircle className="me-2" />
               Crear
             </button>
           </form>
@@ -67,4 +86,4 @@ function CrearTarea() {
   );
 }
 
-export default CrearTarea;
+export default TaskForm;

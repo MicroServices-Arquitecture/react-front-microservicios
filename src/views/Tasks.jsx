@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { FaListAlt, FaPlusCircle, FaEye, FaTasks } from "react-icons/fa";
 
 function Tasks() {
   const [tareas, setTareas] = useState([]);
@@ -19,8 +20,12 @@ function Tasks() {
   return (
     <div className="container py-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h1 className="h3">Listado de Tareas</h1>
+        <h1 className="h3">
+          <FaListAlt className="me-2" />
+          Listado de Tareas
+        </h1>
         <Link to="/tasks/new" className="btn btn-success">
+          <FaPlusCircle className="me-2" />
           Crear Tarea
         </Link>
       </div>
@@ -43,6 +48,7 @@ function Tasks() {
                 <td>{tarea.description}</td>
                 <td>
                   <Link to={`/tasks/${tarea.id}`} className="btn btn-sm btn-outline-info">
+                    <FaEye className="me-1" />
                     Ver Detalles
                   </Link>
                 </td>
@@ -51,6 +57,7 @@ function Tasks() {
             {tareas.length === 0 && (
               <tr>
                 <td colSpan="4" className="text-center text-muted">
+                  <FaTasks className="me-2" />
                   No hay tareas registradas.
                 </td>
               </tr>

@@ -1,4 +1,6 @@
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Home from "./views/Home";
 import Tasks from "./views/Tasks";
@@ -24,6 +26,9 @@ function App() {
           <Route path="/users/:id" element={<UserDetails />} />
         </Routes>
       </main>
+
+      {/* 📢 Contenedor global de notificaciones */}
+      <ToastContainer position="top-center" autoClose={2000} />
     </>
   );
 }
