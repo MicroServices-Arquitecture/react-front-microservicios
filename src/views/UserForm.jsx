@@ -1,20 +1,16 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUser, FaEnvelope, FaMobileAlt, FaUserPlus } from "react-icons/fa";
 import { toast } from "react-toastify";
+import useForm from "../hooks/useForm";
 
 function UserForm() {
-  const [formData, setFormData] = useState({
+  const [formData, handleChange, setFormData] = useForm({
     name: "",
     email: "",
     mobile: "",
   });
 
   const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +23,7 @@ function UserForm() {
 
       if (res.ok) {
         toast.success("Usuario creado correctamente");
-        setTimeout(() => navigate("/users"), 2000); // Espera 2s antes de redirigir
+        setTimeout(() => navigate("/users"), 2000);
       } else {
         toast.error("No se pudo crear el usuario");
       }

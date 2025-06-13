@@ -1,19 +1,15 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaPlusCircle, FaRegFileAlt, FaAlignLeft } from "react-icons/fa";
 import { toast } from "react-toastify";
+import useForm from "../hooks/useForm";
 
 function TaskForm() {
-  const [formData, setFormData] = useState({
+  const [formData, handleChange, setFormData] = useForm({
     name: "",
     description: "",
   });
 
   const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +22,7 @@ function TaskForm() {
 
       if (res.ok) {
         toast.success("Tarea creada exitosamente");
-        setTimeout(() => navigate("/tasks"), 2000); // redirige después de 2s
+        setTimeout(() => navigate("/tasks"), 2000);
       } else {
         toast.error("Error al crear la tarea");
       }

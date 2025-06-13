@@ -10,12 +10,16 @@ import Users from "./views/Users";
 import UserForm from "./views/UserForm";
 import UserDetails from "./views/UserDetails";
 import Navbar from "./views/Navbar";
+import Breadcrumbs from "./views/Breadcrumbs";
+import Footer from "./views/Footer";
 
 function App() {
   return (
-    <>
+    <div className="app-container">
       <Navbar />
-      <main className="container mt-4">
+      <Breadcrumbs />
+
+      <main className="content-wrapper container mt-4">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/tasks" element={<Tasks />} />
@@ -27,9 +31,9 @@ function App() {
         </Routes>
       </main>
 
-      {/* 📢 Contenedor global de notificaciones */}
       <ToastContainer position="top-center" autoClose={2000} />
-    </>
+      <Footer />
+    </div>
   );
 }
 
