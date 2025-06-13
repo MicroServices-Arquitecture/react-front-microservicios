@@ -37,7 +37,7 @@ function Tasks() {
               <th>ID</th>
               <th>Nombre</th>
               <th>Descripción</th>
-              <th>Acciones</th>
+              <th>Detalles</th>
             </tr>
           </thead>
           <tbody>

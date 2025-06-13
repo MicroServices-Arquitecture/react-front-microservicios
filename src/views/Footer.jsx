@@ -5,11 +5,11 @@ function Footer() {
     <footer className="footer">
       <p>
         <FaUniversity className="me-2" />
-        Proyecto académico | Hecho con <FaReact className="text-info" /> React
+        Proyecto académico | Construido con <FaReact className="text-info" /> React
       </p>
       <p>
         <a
-          href="https://github.com/tuusuario"
+          href="https://github.com/Especializacion-Ingenieria-de-Software/front-react.git"
           target="_blank"
           rel="noopener noreferrer"
         >
