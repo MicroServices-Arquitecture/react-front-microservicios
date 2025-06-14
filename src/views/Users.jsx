@@ -1,18 +1,91 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaUsers, FaUserPlus, FaInfoCircle } from "react-icons/fa";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function Users() {
+  const [filtro, setFiltro] = useState("");
+  const [usuariosEncontrados, setUsuariosEncontrados] = useState([]);
+  const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
   const [usuarios, setUsuarios] = useState([]);
 
+  const usuariosDummy = [
+    { id: 1, name: "Ana Gómez", email: "ana@example.com", mobile: "3001234567" },
+    { id: 2, name: "Carlos Pérez", email: "carlos@example.com", mobile: "3012345678" },
+    { id: 3, name: "Ana Martínez", email: "luisa@example.com", mobile: "3029876543" },
+  ];
+
+  // useEffect(() => {
+  //   fetch("http://localhost:8090/task/api/taskuser")
+  //     .then((res) => res.json())
+  //     .then((data) => setUsuarios(data))
+  //     .catch((err) => console.error("Error al obtener usuarios:", err));
+  // }, []);
+
   useEffect(() => {
-    fetch("http://localhost:8090/task/api/taskuser")
-      .then((res) => res.json())
-      .then((data) => setUsuarios(data))
-      .catch((err) => console.error("Error al obtener usuarios:", err));
+    // Simulamos cargar datos al inicio desde "la base de datos"
+    setUsuarios(usuariosDummy);
   }, []);
 
+  const buscarUsuario = () => {
+  const resultados = usuarios.filter((u) =>
+    `${u.name} ${u.email} ${u.mobile}`.toLowerCase().includes(filtro.toLowerCase())
+  );
+
+  if (resultados.length > 0) {
+    setUsuariosEncontrados(resultados);
+
+    const modal = new window.bootstrap.Modal(document.getElementById("modalUsuario"));
+    modal.show();
+  } else {
+    toast.error("Usuario no encontrado");
+  }
+};
+
   return (
+  <>
+    <div
+      className="modal fade"
+      id="modalUsuario"
+      tabIndex="-1"
+      aria-labelledby="modalUsuarioLabel"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title" id="modalUsuarioLabel">
+              Datos del Usuario
+            </h5>
+            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div className="modal-body">
+            {usuariosEncontrados.length > 0 ? (
+              usuariosEncontrados.map((u) => (
+                <div key={u.id} className="mb-3 border-bottom pb-2">
+                  <p><strong>ID:</strong> {u.id}</p>
+                  <p><strong>Nombre:</strong> {u.name}</p>
+                  <p><strong>Email:</strong> {u.email}</p>
+                  <p><strong>Teléfono:</strong> {u.mobile}</p>
+                </div>
+              ))
+            ) : (
+              <p>No se encontró información del usuario.</p>
+            )}
+          </div>
+          <div className="modal-footer">
+            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div className="container py-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1 className="h3">
@@ -23,6 +96,22 @@ function Users() {
           <FaUserPlus className="me-2" />
           Crear Usuario
         </Link>
+      </div>
+
+      <div className="mb-4">
+        <div className="input-group">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Buscar por nombre, correo o teléfono"
+            value={filtro}
+            onChange={(e) => setFiltro(e.target.value)}
+            style={{ maxWidth: "300px" }}
+          />
+          <button className="btn btn-outline-primary" onClick={buscarUsuario}>
+            Buscar
+          </button>
+        </div>
       </div>
 
       <div className="table-responsive">
@@ -62,7 +151,9 @@ function Users() {
         </table>
       </div>
     </div>
-  );
+    <ToastContainer position="top-center" autoClose={3000} />
+  </>
+);
 }
 
 export default Users;

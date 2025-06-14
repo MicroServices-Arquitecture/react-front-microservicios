@@ -71,10 +71,15 @@ function TaskForm() {
                 required
               />
             </div>
-            <button type="submit" className="btn btn-success w-100">
-              <FaPlusCircle className="me-2" />
-              Crear
-            </button>
+            <div className="d-grid gap-2">
+              <button type="submit" className="btn btn-primary">
+                <FaPlusCircle className="me-2" />
+                Crear Tarea
+              </button>
+              <button type="button" className="btn btn-danger" onClick={() => navigate("/tasks")}>
+                Cancelar
+              </button>
+            </div>
           </form>
         </div>
       </div>

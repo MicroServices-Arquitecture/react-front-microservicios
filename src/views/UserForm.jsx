@@ -87,10 +87,15 @@ function UserForm() {
                 required
               />
             </div>
-            <button type="submit" className="btn btn-primary w-100">
-              <FaUserPlus className="me-2" />
-              Crear Usuario
-            </button>
+            <div className="d-grid gap-2">
+              <button type="submit" className="btn btn-primary">
+                <FaUserPlus className="me-2" />
+                Crear Usuario
+              </button>
+              <button type="button" className="btn btn-danger" onClick={() => navigate("/users")}>
+                Cancelar
+              </button>
+            </div>
           </form>
         </div>
       </div>
