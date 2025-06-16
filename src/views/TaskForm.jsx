@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import useForm from "../hooks/useForm";
 
 function TaskForm() {
-  const [formData, handleChange, setFormData] = useForm({
+  const [formData, handleChange] = useForm({
     name: "",
     description: "",
   });
@@ -86,5 +86,6 @@ function TaskForm() {
     </div>
   );
 }
+
 
 export default TaskForm;

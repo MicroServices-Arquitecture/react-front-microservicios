@@ -11,33 +11,20 @@ function Tasks() {
   const [filtro, setFiltro] = useState("");
   const [tareasFiltradas, setTareasFiltradas] = useState([]);
 
-
-  const tareasDummy = [
-  { id: 1, name: "Revisar informes", description: "Revisar informes mensuales del área de finanzas" },
-  { id: 2, name: "Enviar correo", description: "Enviar correo a proveedores" },
-  { id: 3, name: "Actualizar CRM", description: "Actualizar contactos y oportunidades en el sistema" },
-  { id: 4, name: "Revisar informes", description: "Revisión duplicada para probar filtro múltiple" },
-];
-
-  // useEffect(() => {
-  //   fetch("http://localhost:8090/task/api/tasks")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       const ordenadas = data.sort((a, b) => a.id - b.id);
-  //       setTareas(ordenadas);
-  //     })
-  //     .catch((err) => {
-  //       console.error("Error al cargar tareas:", err);
-  //     });
-  // }, []);
-
   useEffect(() => {
-  const ordenadas = tareasDummy.sort((a, b) => a.id - b.id);
-  setTareas(ordenadas);
-}, []);
+    fetch("http://localhost:8090/task/api/tasks")
+      .then((res) => res.json())
+      .then((data) => {
+        const ordenadas = data.sort((a, b) => a.id - b.id);
+        setTareas(ordenadas);
+      })
+      .catch((err) => {
+        console.error("Error al cargar tareas:", err);
+      });
+  }, []);
 
 const buscarTarea = () => {
-  const resultados = tareasDummy.filter((t) =>
+  const resultados = tareas.filter((t) =>
     `${t.name} ${t.description}`.toLowerCase().includes(filtro.toLowerCase())
   );
 

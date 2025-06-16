@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import useForm from "../hooks/useForm";
 
 function UserForm() {
-  const [formData, handleChange, setFormData] = useForm({
+  const [formData, handleChange] = useForm({
     name: "",
     email: "",
     mobile: "",

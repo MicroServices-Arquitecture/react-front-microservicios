@@ -10,25 +10,13 @@ import "react-toastify/dist/ReactToastify.css";
 function Users() {
   const [filtro, setFiltro] = useState("");
   const [usuariosEncontrados, setUsuariosEncontrados] = useState([]);
-  const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
   const [usuarios, setUsuarios] = useState([]);
 
-  const usuariosDummy = [
-    { id: 1, name: "Ana Gómez", email: "ana@example.com", mobile: "3001234567" },
-    { id: 2, name: "Carlos Pérez", email: "carlos@example.com", mobile: "3012345678" },
-    { id: 3, name: "Ana Martínez", email: "luisa@example.com", mobile: "3029876543" },
-  ];
-
-  // useEffect(() => {
-  //   fetch("http://localhost:8090/task/api/taskuser")
-  //     .then((res) => res.json())
-  //     .then((data) => setUsuarios(data))
-  //     .catch((err) => console.error("Error al obtener usuarios:", err));
-  // }, []);
-
   useEffect(() => {
-    // Simulamos cargar datos al inicio desde "la base de datos"
-    setUsuarios(usuariosDummy);
+    fetch("http://localhost:8090/task/api/taskuser")
+      .then((res) => res.json())
+      .then((data) => setUsuarios(data))
+      .catch((err) => console.error("Error al obtener usuarios:", err));
   }, []);
 
   const buscarUsuario = () => {
