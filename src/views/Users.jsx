@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { apiFetch } from "../api";
 
 
 function Users() {
@@ -13,7 +14,7 @@ function Users() {
   const [usuarios, setUsuarios] = useState([]);
 
   useEffect(() => {
-    fetch("https://ms-gateway-production-97bb.up.railway.app/task/api/taskuser")
+    apiFetch("/task/api/taskuser")
       .then((res) => res.json())
       .then((data) => setUsuarios(data))
       .catch((err) => console.error("Error al obtener usuarios:", err));

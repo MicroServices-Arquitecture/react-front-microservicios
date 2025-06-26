@@ -1,13 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaIdBadge, FaUser, FaEnvelope, FaMobileAlt, FaUserCircle } from "react-icons/fa";
+import { apiFetch } from "../api";
 
 function UserDetails() {
   const { id } = useParams();
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch(`https://ms-gateway-production-97bb.up.railway.app/task/api/taskuser/id/${id}`)
+    apiFetch(`/task/api/taskuser/id/${id}`)
       .then((res) => res.json())
       .then((data) => setUser(data))
       .catch((error) => console.error("Error loading user:", error));
