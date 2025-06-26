@@ -7,7 +7,7 @@ function TaskDetails() {
   const [tarea, setTarea] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8090/task/api/tasks/id/${id}`)
+    fetch(`https://ms-gateway-production-97bb.up.railway.app/task/api/tasks/id/${id}`)
       .then((res) => res.json())
       .then((data) => setTarea(data))
       .catch((error) => console.error("Error al cargar la tarea:", error));

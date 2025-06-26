@@ -15,7 +15,7 @@ function UserForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:8090/task/api/taskuser", {
+      const res = await fetch("https://ms-gateway-production-97bb.up.railway.app/task/api/taskuser", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

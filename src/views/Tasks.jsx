@@ -12,7 +12,7 @@ function Tasks() {
   const [tareasFiltradas, setTareasFiltradas] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8090/task/api/tasks")
+    fetch("https://ms-gateway-production-97bb.up.railway.app/task/api/tasks")
       .then((res) => res.json())
       .then((data) => {
         const ordenadas = data.sort((a, b) => a.id - b.id);
