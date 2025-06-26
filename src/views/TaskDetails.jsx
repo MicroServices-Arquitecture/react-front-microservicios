@@ -1,13 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaIdBadge, FaClipboardList, FaAlignLeft, FaInfoCircle } from "react-icons/fa";
+import { apiFetch } from "../api";
 
 function TaskDetails() {
   const { id } = useParams();
   const [tarea, setTarea] = useState(null);
 
   useEffect(() => {
-    fetch(`https://ms-gateway-production-97bb.up.railway.app/task/api/tasks/id/${id}`)
+    apiFetch(`/task/api/tasks/id/${id}`)
       .then((res) => res.json())
       .then((data) => setTarea(data))
       .catch((error) => console.error("Error al cargar la tarea:", error));

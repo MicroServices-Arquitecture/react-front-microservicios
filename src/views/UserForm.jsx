@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { FaUser, FaEnvelope, FaMobileAlt, FaUserPlus } from "react-icons/fa";
 import { toast } from "react-toastify";
 import useForm from "../hooks/useForm";
+import { apiFetch } from "../api";
 
 function UserForm() {
   const [formData, handleChange] = useForm({
@@ -15,7 +16,7 @@ function UserForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("https://ms-gateway-production-97bb.up.railway.app/task/api/taskuser", {
+      const res = await apiFetch("/task/api/taskuser", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

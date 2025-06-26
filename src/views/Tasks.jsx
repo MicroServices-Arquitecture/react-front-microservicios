@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { apiFetch } from "../api";
 
 function Tasks() {
   const [tareas, setTareas] = useState([]);
@@ -12,7 +13,7 @@ function Tasks() {
   const [tareasFiltradas, setTareasFiltradas] = useState([]);
 
   useEffect(() => {
-    fetch("https://ms-gateway-production-97bb.up.railway.app/task/api/tasks")
+    apiFetch("/task/api/tasks")
       .then((res) => res.json())
       .then((data) => {
         const ordenadas = data.sort((a, b) => a.id - b.id);
