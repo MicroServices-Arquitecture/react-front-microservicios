@@ -15,7 +15,7 @@ function TaskForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await apiFetch("https://ms-gateway-production-97bb.up.railway.app/task/api/tasks", {
+      const res = await apiFetch("/task/api/tasks", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
