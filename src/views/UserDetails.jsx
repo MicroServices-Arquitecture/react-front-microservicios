@@ -8,7 +8,7 @@ function UserDetails() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    apiFetch(`/task/api/taskuser/id/${id}`)
+    apiFetch(`https://ms-gateway-production-97bb.up.railway.app/task/api/taskuser/id/${id}`)
       .then((res) => res.json())
       .then((data) => setUser(data))
       .catch((error) => console.error("Error loading user:", error));

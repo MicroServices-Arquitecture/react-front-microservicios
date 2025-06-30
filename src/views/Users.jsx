@@ -14,7 +14,7 @@ function Users() {
   const [usuarios, setUsuarios] = useState([]);
 
   useEffect(() => {
-    apiFetch("/task/api/taskuser")
+    apiFetch("https://ms-gateway-production-97bb.up.railway.app/task/api/taskuser")
       .then((res) => res.json())
       .then((data) => setUsuarios(data))
       .catch((err) => console.error("Error al obtener usuarios:", err));
